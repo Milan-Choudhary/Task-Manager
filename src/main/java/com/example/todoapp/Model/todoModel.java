@@ -1,5 +1,6 @@
 package com.example.todoapp.Model;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,8 +17,10 @@ public class todoModel {
     @Id
     private String id;
 
-    private String userId; // Reference to the userModel ID
+    @NotBlank(message = "User reference is required")
+    private String userId;
 
+    @NotBlank(message = "Title cannot be empty")
     private String title;
 
     private String description;
@@ -25,5 +28,4 @@ public class todoModel {
     private boolean completed = false;
 
     private LocalDateTime createdAt = LocalDateTime.now();
-
 }
