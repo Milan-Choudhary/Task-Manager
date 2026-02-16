@@ -7,9 +7,8 @@ import java.util.Optional;
 
 @Repository
 public interface userRepository extends MongoRepository<userModel, String> {
-    // Custom query to find user by username for authentication
+
     Optional<userModel> findByUsername(String username);
 
-    // Check if email already exists during registration
     Boolean existsByEmail(String email);
 }

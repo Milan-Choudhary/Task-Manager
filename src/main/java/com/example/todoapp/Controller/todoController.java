@@ -17,7 +17,6 @@ public class todoController {
     @Autowired
     private todoService tService;
 
-    // Load the page
     @GetMapping
     public String showPage(Model model) {
         model.addAttribute("todoDTO", new todoRequestDTO("", ""));
@@ -25,7 +24,7 @@ public class todoController {
         return "todo-list";
     }
 
-    // Process the form using the DTO
+
     @PostMapping("/save")
     public String saveTodo(@Valid @ModelAttribute("todoDTO") todoRequestDTO dto,
                            BindingResult result,
@@ -45,14 +44,13 @@ public class todoController {
         return "redirect:/todos";
     }
 
-    // THIS WAS MISSING: The method to handle the Complete button!
     @GetMapping("/toggle/{id}")
     public String toggleTaskStatus(@PathVariable("id") String id) {
         tService.toggleComplete(id);
         return "redirect:/todos";
     }
 
-    // Notice the ("id") added here as well for safety
+
     @GetMapping("/delete/{id}")
     public String removeTodo(@PathVariable("id") String id) {
         tService.deleteTodo(id);
